@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Idea from './Idea'
+import IdeaForm from './IdeaForm'
+
 import axios from 'axios'
 import update from 'immutability-helper'
 
@@ -10,7 +12,8 @@ class IdeasContainer extends Component {
         super(props)
         this.state = {
           ideas: [],
-          editingIdeaId: null
+          editingIdeaId: null,
+          notification: ''
         }
     }
   
@@ -47,24 +50,50 @@ class IdeasContainer extends Component {
         })
         .catch(error => console.log(error))
     }
+
+    // immutable update of the idea
+    // find the index of the edited idea in the array
+    // use the $set command to replace the old value with the new one
+    updateIdea = (idea) => {
+        const ideaIndex = this.state.ideas.findIndex(x => x.id === idea.id)
+        const ideas = update(this.state.ideas, {
+          [ideaIndex]: { $set: idea }
+        })
+        this.setState({
+            ideas: ideas,
+            notification: 'All changes saved'
+        })
+    }
+
+    resetNotification = () => {
+        this.setState({notification: ''})
+    }
+      
   
     render() {
-    return (
-      <div>
-        <div>
-          <button className="newIdeaButton"
-            onClick={this.addNewIdea}>
-            New Idea
-          </button>
-        </div>
-        {this.state.ideas.map((idea) => {
-            return(
-                <Idea idea={idea} key={idea.id} />
-            )       
-        })}
-      </div>
-    )
-  }
+        return (
+            <div>
+                <div>
+                    <button className="newIdeaButton"
+                        onClick={this.addNewIdea}>
+                        New Idea
+                    </button>
+                    <span className="notification">
+                        {this.state.notification}
+                    </span>
+                </div>
+                {this.state.ideas.map((idea) => {
+                    if(this.state.editingIdeaId === idea.id) {
+                        return(<IdeaForm idea={idea} key={idea.id} 
+                            updateIdea={this.updateIdea} 
+                            resetNotification={this.resetNotification} />)
+                    } else {
+                        return (<Idea idea={idea} key={idea.id} />)
+                    }    
+                })}
+            </div>
+        )
+    }
 }
 
 export default IdeasContainer
