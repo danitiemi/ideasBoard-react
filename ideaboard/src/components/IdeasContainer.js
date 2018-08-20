@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Idea from './Idea'
 import IdeaForm from './IdeaForm'
-
+import Notification from './Notification'
 import axios from 'axios'
 import update from 'immutability-helper'
 
@@ -13,7 +13,8 @@ class IdeasContainer extends Component {
         this.state = {
           ideas: [],
           editingIdeaId: null,
-          notification: ''
+          notification: '',
+          transitionIn: false
         }
     }
   
@@ -61,12 +62,16 @@ class IdeasContainer extends Component {
         })
         this.setState({
             ideas: ideas,
-            notification: 'All changes saved'
+            notification: 'All changes saved !',
+            transitionIn: true
         })
     }
 
     resetNotification = () => {
-        this.setState({notification: ''})
+        this.setState({
+            notification: '', 
+            transitionIn: false
+        })
     }
      
     // Editing an existing idea
@@ -88,28 +93,27 @@ class IdeasContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <div>
-                    <button className="newIdeaButton"
-                        onClick={this.addNewIdea}>
-                        New Idea
+                    <button className="newIdeaButton" onClick={this.addNewIdea}>
+                        <i className="fas fa-plus"></i>  NEW IDEA
                     </button>
-                    <span className="notification">
-                        {this.state.notification}
-                    </span>
+                    <Notification in={this.state.transitionIn} notification={this.state.notification} />
                 </div>
-                {this.state.ideas.map((idea) => {
-                    if(this.state.editingIdeaId === idea.id) {
-                        return(<IdeaForm idea={idea} key={idea.id} 
-                            updateIdea={this.updateIdea}
-                            titleRef= {input => this.title = input} 
-                            resetNotification={this.resetNotification} />)
-                    } else {
-                        return (<Idea idea={idea} key={idea.id}
-                            onClick={this.enableEditing}
-                            onDelete={this.deleteIdea} />)
-                    }    
-                })}
+                <div className="ideas_container">
+                    {this.state.ideas.map((idea) => {
+                        if(this.state.editingIdeaId === idea.id) {
+                            return(<IdeaForm idea={idea} key={idea.id} 
+                                updateIdea={this.updateIdea}
+                                titleRef= {input => this.title = input} 
+                                resetNotification={this.resetNotification} />)
+                        } else {
+                            return (<Idea idea={idea} key={idea.id}
+                                onClick={this.enableEditing}
+                                onDelete={this.deleteIdea} />)
+                        }    
+                    })}
+                </div>
             </div>
         )
     }

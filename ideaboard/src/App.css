@@ -1,83 +1,107 @@
-/* .App {
-  text-align: center;
-} */
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App, html {
+  background: url("brick-wall.png") no-repeat center center fixed;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #0097a7;
+  opacity: 0.9;
+  font-family: "Fredericka the Great", cursive;
   height: 150px;
-  padding: 20px;
-  color: white;
+  padding: 50px;
+  color: #f4d950;
   text-align: center;
+  margin-bottom: 15px
+}
+
+h1 .fas {
+  color: lightyellow
 }
 
 .App-title {
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Fredericka the Great", cursive;
+  font-size: 25px
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+h1 .fas:hover {
+  transform: scale(1.2) rotate(-5deg);
+  color: #f4d950
 }
 
 .tile {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   margin: 10px;
   background: lightyellow;
   float: left;
-  font-size: 11px;
+  font-size: 1em;
   text-align: left;
+  box-shadow: 1.5px 1.5px #bbbaba9d;
+  padding: 15px;
+  font-family: 'Caveat Brush', cursive;
+}
+
+.title {
+  font-family: "Fredericka the Great", cursive;
+  color: #563d7c
+}
+
+.text {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 21px;
+  color: #4b4e4f
 }
 
 .newIdeaButton {
-  background: rgb(25, 160, 153);
+  /* font-family: "Fredericka the Great", cursive; */
+  background: #563d7c;
   color: white;
-  border: solid;
+  border: solid #ccc;
   font-size: 18px;
   cursor: pointer;
   margin-right: 10px;
   margin-left: 10px;
   padding:10px;
+  border-radius: 8px;
+}
+
+.newIdeaButton:hover {
+  background: #855cc4;
+  color: #61c8d3
 }
 
 .input {
+  font-family: 'Caveat Brush', cursive;
   border: 0;
   background: none;
   outline: none;
-  margin-top:10px;
-  width: 140px;
-  font-size: 11px;
+  margin-top:5px;
+  width: 170px;
+  font-size: 22px;
 }
 
 .input:focus {
-  border: solid 1px lightgrey;
+  border: dashed 1px #0097a7;
 }
 
 textarea {
   resize: none;
-  height: 90px;
-  font-size: 11px;
+  height: 130px;
 }
 
 .deleteButton {
   visibility: hidden;
   float: right;
-  margin: 5px;
-  font-size: 14px;
   cursor: pointer;
-  color: red;
+  margin: -5px;
+  color: #d80447;
 }
 
 .tile:hover .deleteButton {
   visibility: visible;
 }
-

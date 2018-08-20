@@ -14,12 +14,12 @@ class Idea extends Component {
     return(
       <div className="tile">
         <span className="deleteButton" onClick={this.handleDelete}>
-          x
+          <i className="fas fa-minus-circle"></i>
         </span>
-        <h4 onClick={this.handleClick}>
+        <h5 className="title" onClick={this.handleClick}>
           {this.props.idea.title}
-        </h4>
-        <p onClick={this.handleClick}>
+        </h5>
+        <p className="text" onClick={this.handleClick}>
           {this.props.idea.body}
         </p>
       </div>
