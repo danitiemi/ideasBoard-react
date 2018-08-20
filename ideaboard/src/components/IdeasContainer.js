@@ -19,6 +19,7 @@ class IdeasContainer extends Component {
     }
   
     componentDidMount() {
+        // AJAX call to the API and store the idea in the component state
         axios.get('http://localhost:3001/api/v1/ideas.json')
         .then(response => {
           console.log(response)
@@ -27,8 +28,8 @@ class IdeasContainer extends Component {
         .catch(error => console.log(error))
     }
 
-    //  make a new copy of this.state.ideas and 
-    // $splice command insert the new idea in response.data, at the 0th index of this array.
+    // update() make a new copy of this.state.ideas 
+    // $splice command insert the new idea in response.data, at the 0 index of this array.
     addNewIdea = () => {
         axios.post(
           'http://localhost:3001/api/v1/ideas',
@@ -103,7 +104,7 @@ class IdeasContainer extends Component {
                 <div className="ideas_container">
                     {this.state.ideas.map((idea) => {
                         if(this.state.editingIdeaId === idea.id) {
-                            return(<IdeaForm idea={idea} key={idea.id} 
+                            return (<IdeaForm idea={idea} key={idea.id} 
                                 updateIdea={this.updateIdea}
                                 titleRef= {input => this.title = input} 
                                 resetNotification={this.resetNotification} />)

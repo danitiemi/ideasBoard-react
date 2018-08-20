@@ -1,0 +1,34 @@
+{
+  "name": "ideaboard-api",
+  "version": "1.0.0",
+  "description": "A way to save your Brilliant Ideas",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "immutability-helper": "^2.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "rails s -p3001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danitiemi/ideasBoard-react.git"
+  },
+  "keywords": [
+    "rails",
+    "api",
+    "react",
+    "SPA"
+  ],
+  "author": "Daniele Tiemi Higa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danitiemi/ideasBoard-react/issues"
+  },
+  "homepage": "https://github.com/danitiemi/ideasBoard-react#readme"
+}

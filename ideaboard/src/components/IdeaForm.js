@@ -32,7 +32,7 @@ class IdeaForm extends Component {
           this.props.updateIdea(response.data)
         })
         .catch(error => console.log(error))
-      }
+    }
 
     render() {
         return (

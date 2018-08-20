@@ -1,5 +1,6 @@
 import React from 'react'
 import Transition from 'react-transition-group/Transition'
+// perform animations when a React component enters or leaves the DOM
 
 const duration = 2000
 
