@@ -8,7 +8,7 @@ Brilliant Ideas is a single-page web application that allows users to easily add
 
 ### Features
 
-- Primarily a client-side Single Page CRUD App.
+- Primarily a Single Page CRUD App.
 - Add, save, edit and delete ideas.
 - Back-end API with 3 endpoints.
 
