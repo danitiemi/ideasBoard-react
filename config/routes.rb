@@ -7,4 +7,10 @@ Rails.application.routes.draw do
     end
   end
 
+  #add our register route
+  post 'auth/register', to: 'users#register'
+
+  post 'auth/login', to: 'users#login'
+  get 'test', to: 'users#test'
+
 end
