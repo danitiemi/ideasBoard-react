@@ -6,6 +6,7 @@
   margin-top:5px;
   width: 170px;
   font-size: 22px;
+  
 }
 
 .input:focus {
@@ -17,6 +18,12 @@ textarea {
   height: 130px;
 }
 
+.text {
+  font-family: $font-body;
+  font-size: 21px;
+  color: $placeholder-color
+}
+
 .deleteButton {
   visibility: hidden;
   float: right;
@@ -25,6 +32,3 @@ textarea {
   color: $alert-color;
 }
 
-.tile:hover .deleteButton {
-  visibility: visible;
-}

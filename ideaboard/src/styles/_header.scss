@@ -9,13 +9,15 @@
   margin-bottom: 15px
 }
 
-h1 .fas {
-  color: $tile-color;
-}
+h1 {
+  .fas {
+    color: $tile-color;
+  }
 
-h1 .fas:hover {
-  transform: scale(1.2) rotate(-5deg);
-  color: $lightbulb-color
+  .fas:hover {
+    transform: scale(1.2) rotate(-5deg);
+    color: $lightbulb-color
+  }
 }
 
 .App-title {
