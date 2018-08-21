@@ -7,7 +7,7 @@ import update from 'immutability-helper'
 
 class IdeasContainer extends Component {
 
-    // initialize the state
+    // initialize the states values
     constructor(props) {
         super(props)
         this.state = {
@@ -54,7 +54,6 @@ class IdeasContainer extends Component {
             .catch(error => console.log(error))
     }
 
-    // immutable update of the idea
     // find the index of the edited idea in the array
     // use the $set command to replace the old value with the new one
     updateIdea = (idea) => {
