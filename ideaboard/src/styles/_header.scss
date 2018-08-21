@@ -1,0 +1,23 @@
+.App-header {
+  background-color: $primary-color;
+  opacity: 0.9;
+  font-family: $font-stack;
+  height: 150px;
+  padding: 50px;
+  color: $lightbulb-color;
+  text-align: center;
+  margin-bottom: 15px
+}
+
+h1 .fas {
+  color: $tile-color;
+}
+
+h1 .fas:hover {
+  transform: scale(1.2) rotate(-5deg);
+  color: $lightbulb-color
+}
+
+.App-title {
+  font-size: 1.5em;
+}

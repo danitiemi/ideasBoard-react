@@ -1,36 +1,36 @@
-.App, html {
+/* .App, html {
   background: url("brick-wall.png") no-repeat center center fixed;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Fredericka the Great, cursive;
-  font-size: 25px;
 }
 
 .App-header {
   background-color: #0097a7;
   opacity: 0.9;
-  font-family: Fredericka the Great, cursive;
+  font-family: "Fredericka the Great", cursive;
   height: 150px;
   padding: 50px;
   color: #f4d950;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 15px
 }
 
 h1 .fas {
-  color: lightyellow;
-}
-
-h1 .fas:hover {
-  transform: scale(1.2) rotate(-5deg);
-  color: #f4d950;
+  color: lightyellow
 }
 
 .App-title {
   font-size: 1.5em;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Fredericka the Great", cursive;
+  font-size: 25px
+}
+
+h1 .fas:hover {
+  transform: scale(1.2) rotate(-5deg);
+  color: #f4d950
 }
 
 .tile {
@@ -41,20 +41,20 @@ h1 .fas:hover {
   float: left;
   font-size: 1em;
   text-align: left;
-  box-shadow: 1.5px 1.5px #bbbaba;
+  box-shadow: 1.5px 1.5px #bbbaba9d;
   padding: 15px;
-  font-family: Caveat Brush, cursive;
+  font-family: 'Caveat Brush', cursive;
 }
 
 .title {
-  font-family: Fredericka the Great, cursive;
-  color: #563d7c;
+  font-family: "Fredericka the Great", cursive;
+  color: #563d7c
 }
 
 .text {
-  font-family: Caveat Brush, cursive;
+  font-family: 'Caveat Brush', cursive;
   font-size: 21px;
-  color: #4b4e4f;
+  color: #4b4e4f
 }
 
 .newIdeaButton {
@@ -65,21 +65,21 @@ h1 .fas:hover {
   cursor: pointer;
   margin-right: 10px;
   margin-left: 10px;
-  padding: 10px;
+  padding:10px;
   border-radius: 8px;
 }
 
 .newIdeaButton:hover {
   background: #855cc4;
-  color: #61c8d3;
+  color: #61c8d3
 }
 
 .input {
-  font-family: Caveat Brush, cursive;
+  font-family: 'Caveat Brush', cursive;
   border: 0;
   background: none;
   outline: none;
-  margin-top: 5px;
+  margin-top:5px;
   width: 170px;
   font-size: 22px;
 }
@@ -103,6 +103,4 @@ textarea {
 
 .tile:hover .deleteButton {
   visibility: visible;
-}
-
-/*# sourceMappingURL=App.css.map */
+} */
