@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 // import IdeasContainer from './components/IdeasContainer'
 import LoginScreen from './components/LoginScreen';
-// import LoginSwitch from './components/Login';
+// import LoginSwitch from './components/LoginSwitch';
 
 class App extends Component {
   render() {
@@ -14,6 +14,7 @@ class App extends Component {
         <LoginScreen />
         {/* <LoginSwitch /> */}
         {/* <IdeasContainer /> */}
+
       </div>
     );
   }

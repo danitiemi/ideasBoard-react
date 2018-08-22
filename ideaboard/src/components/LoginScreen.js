@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import IdeasContainer from './IdeasContainer';
 
 // const Api = require('../lib/Api.js')
 
@@ -10,7 +11,8 @@ class LoginScreen extends Component {
 
     this.state = {
       username:'',
-      password:''
+      password:'',
+      loggedIn: false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -25,7 +27,6 @@ class LoginScreen extends Component {
         value: newValue,
       }
     })
-    console.log(newValue, "newValue")
   }
 
   setPassword(event) {
@@ -35,7 +36,6 @@ class LoginScreen extends Component {
         value: newValue,
       }
     })
-    console.log(this.state.password)
   }
 
   handleClick(event){
@@ -45,69 +45,37 @@ class LoginScreen extends Component {
         password: this.state.password.value
     }
     axios.post(`${apiBaseUrl}auth/login`, data)
-      .then(function (response) {
-        return response.data.jwt
+      .then(response => {
+        // console.log(response.data.access_token)
+        return response.data.access_token
       })
-      // .then(jwt => {
-      //   if (jwt) {
-      //     this.props.propagateSignIn(jwt, this.props.history)
-      //     console.log("here", this.state.email.value)
-      //   }
-      //   else {
-      //     this.setState({
-      //       submit: {
-      //         error: 'Sorry, we could not log you in with the credentials provided. Please try again.'
-      //       }
-      //     })
-      //   }
-      // })
+      .then(response => {
+        let config = {
+          headers: {}
+        }
+        config['headers']['Authorization'] = 'Bearer ' + response
+        return axios.get(`${apiBaseUrl}api/v1/ideas`, config)          
+      })
+      .then(response => { 
+        
+        this.setState ({
+          loggedIn: true
+        })
+        console.log(this.state.loggedIn)
+        return (<IdeasContainer />)
+    
+      })
       .catch(function (error) {
         return undefined
-      // })
-    
-    // .then(function (response) {
-    // console.log('response:', response);
-    // if(response.data.code === 200){
-    // console.log("Login successfull");
-
-    // var uploadScreen=[];
-    // uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
-    // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
-    // }
-    // else if(response.data.code == 204){
-    // console.log("Username password do not match");
-    // alert("username password do not match")
-    // }
-    // else{
-    // console.log("Username does not exists");
-    // alert("Username does not exist");
-    // }
-    })
-    // .catch(function (error) {
-    // console.log(error);
-    // });
+      })
+  
   }
  
-  //   Api.authenticateUser(this.state.email.value, this.state.password.value).then(jwt => {
-  //     if (jwt) {
-  //       this.props.propagateSignIn(jwt, this.props.history)
-  //       console.log("here", this.state.email.value)
-  //     }
-  //     else {
-  //       this.setState({
-  //         submit: {
-  //           error: 'Sorry, we could not log you in with the credentials provided. Please try again.'
-  //         }
-  //       })
-  //     }
-  //   })
-  // }
-
   render() {
     return (
       <div className="container">
           <div className="loginContainer">
-            <form onSubmit={this.handleSubmit}>
+            <form >
               <label htmlFor="email">Email: </label>
               <br />
               <input name="email" type="email" id="email" onChange={this.setEmail}/>
@@ -122,7 +90,7 @@ class LoginScreen extends Component {
               />
             </form>
             <br />
-            <button className="newIdeaButton" onClick={this.handleClick}>
+            <button className="newIdeaButton" onClick={this.handleClick} loggedIn={this.props.loggedIn}>
                 Login
             </button>
           

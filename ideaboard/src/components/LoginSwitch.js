@@ -5,11 +5,12 @@ import LoginScreen from './LoginScreen'
 class LoginSwitch extends React.Component {
 
   render() {
-    const props = this.props
+    // return (
+    // const props = this.props
     
     if (!props.loggedIn) {
       return (
-        <LoginScreen loginHandler={props.loginHandler}/> 
+        <LoginScreen onSubmit={props.handleClick}/> 
       )
     } else {
       return (
@@ -17,6 +18,7 @@ class LoginSwitch extends React.Component {
       )
     }
   }
+
 }
 
 export default LoginSwitch

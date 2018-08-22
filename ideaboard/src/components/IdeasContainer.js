@@ -19,6 +19,7 @@ class IdeasContainer extends Component {
     }
 
     componentDidMount() {
+
         // AJAX call to the API and store the idea in the component state
         axios.get('http://localhost:3001/api/v1/ideas.json')
             .then(response => {
