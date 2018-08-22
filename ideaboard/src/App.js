@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import './styles/App.css';
+// import { BrowserRouter, Route, Link } from 'react-router-dom'
 // import IdeasContainer from './components/IdeasContainer'
 import LoginScreen from './components/LoginScreen';
-// import LoginSwitch from './components/LoginSwitch';
+import IdeasContainer from './components/IdeasContainer';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: false,
+      loggedIn: false,
+      ideas: '',
+      updatingIdeas: false
+    }
+  }
+  
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1><i className="fas fa-lightbulb"></i> My Brilliant Ideas</h1>
         </header>
+        
         <LoginScreen />
-        {/* <LoginSwitch /> */}
-        {/* <IdeasContainer /> */}
-
+       
       </div>
     );
   }
 }
 
-export default App;
+export default App

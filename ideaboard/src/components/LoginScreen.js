@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import IdeasContainer from './IdeasContainer';
-
-// const Api = require('../lib/Api.js')
+// import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class LoginScreen extends Component {
 
@@ -12,7 +11,8 @@ class LoginScreen extends Component {
     this.state = {
       username:'',
       password:'',
-      loggedIn: false
+      loggedIn: false,
+      ideasScreen: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -59,11 +59,14 @@ class LoginScreen extends Component {
       .then(response => { 
         
         this.setState ({
-          loggedIn: true
+          loggedIn: true,
         })
-        console.log(this.state.loggedIn)
-        return (<IdeasContainer />)
-    
+        // console.log(this.state.loggedIn)
+        if (this.state.loggedIn && this.state.ideasScreen) {
+          return (
+            <IdeasContainer />
+          )
+        }
       })
       .catch(function (error) {
         return undefined
@@ -72,8 +75,11 @@ class LoginScreen extends Component {
   }
  
   render() {
-    return (
-      <div className="container">
+    const props = this.props
+
+    if (!props.loggedIn) {
+      return (
+        <div className="container">
           <div className="loginContainer">
             <form >
               <label htmlFor="email">Email: </label>
@@ -95,10 +101,14 @@ class LoginScreen extends Component {
             </button>
           
           </div>
-      </div>
-    );
+        </div>
+      )
+    } else {
+      return (
+        <IdeasContainer loggedIn={this.props.loggedIn} />
+      )
+    }
   }
-
 }
 
 export default LoginScreen
