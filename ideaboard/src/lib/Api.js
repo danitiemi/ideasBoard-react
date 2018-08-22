@@ -1,4 +1,4 @@
-var axios = require('axios')
+const axios = require('axios')
 
 let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3001'
 
@@ -13,7 +13,6 @@ module.exports = {
     }
     return axios.post(apiHost + '/auth/login', data)
       .then(function (response) {
-        console.log(apiHost)
         return response.data.jwt
       })
       .catch(function (error) {
