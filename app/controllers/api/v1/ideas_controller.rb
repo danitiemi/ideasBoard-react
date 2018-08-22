@@ -27,6 +27,10 @@ module Api::V1
               render json: @idea.errors, status: :unprocessable_entity
             end
         end 
+
+        def show
+            
+        end
         
         private
           

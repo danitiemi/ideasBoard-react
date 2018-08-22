@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def login
+    byebug
     authenticate params[:email], params[:password]
   end
 
