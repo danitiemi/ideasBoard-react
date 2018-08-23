@@ -14,14 +14,21 @@ class IdeasContainer extends Component {
             ideas: [],
             editingIdeaId: null,
             notification: '',
-            transitionIn: false
+            transitionIn: false,
         }
     }
 
     componentDidMount() {
-
+        let config = { headers: {}}
+        let jwt = this.props.jwt
+        // let config = this.props.config
+        console.log(jwt)
+        // console.log(config, "config")
         // AJAX call to the API and store the idea in the component state
-        axios.get('http://localhost:3001/api/v1/ideas.json')
+        config['headers']['Authorization'] = 'Bearer ' + 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDAwOTh9.GYz6DL6yLA0lB2Q8SBy5Vq37aXMURWtEXPVNFrpw4bY'
+        // return axios.get(`${apiBaseUrl}api/v1/ideas`, config)        
+        // config['headers']['Authorization'] = 'Bearer ' + jwt
+        axios.get('http://localhost:3001/api/v1/ideas', config)
             .then(response => {
                 console.log(response)
                 this.setState({ ideas: response.data })

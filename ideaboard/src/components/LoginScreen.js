@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import IdeasContainer from './IdeasContainer';
-// import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 
 class LoginScreen extends Component {
 
@@ -12,7 +12,8 @@ class LoginScreen extends Component {
       username:'',
       password:'',
       loggedIn: false,
-      ideasScreen: ''
+      redirectToReferrer: false,
+      jwt: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -50,24 +51,25 @@ class LoginScreen extends Component {
         return response.data.access_token
       })
       .then(response => {
-        let config = {
-          headers: {}
-        }
-        config['headers']['Authorization'] = 'Bearer ' + response
-        return axios.get(`${apiBaseUrl}api/v1/ideas`, config)          
-      })
-      .then(response => { 
-        
+        let config = { headers: {}}
+        let jwt = response
         this.setState ({
           loggedIn: true,
+          redirectToReferrer: true,
+          jwt: jwt
         })
-        // console.log(this.state.loggedIn)
-        if (this.state.loggedIn && this.state.ideasScreen) {
-          return (
-            <IdeasContainer />
-          )
-        }
+        config['headers']['Authorization'] = 'Bearer ' + jwt
+        return axios.get(`${apiBaseUrl}api/v1/ideas`, config)          
       })
+      // .then(response => { 
+        
+      //   this.setState ({
+      //     loggedIn: true,
+      //     redirectToReferrer: true
+      //   })
+        // console.log(this.state.loggedIn)
+  
+      // })
       .catch(function (error) {
         return undefined
       })
@@ -75,9 +77,14 @@ class LoginScreen extends Component {
   }
  
   render() {
-    const props = this.props
-
-    if (!props.loggedIn) {
+    const props = this.props;
+    // const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { redirectToReferrer } = this.state;
+  
+  
+    if (redirectToReferrer) {
+      return <Redirect exact to="/ideas" onClick={this.handleClick} jwt={this.state.jwt}/>;
+    }
       return (
         <div className="container">
           <div className="loginContainer">
@@ -103,11 +110,7 @@ class LoginScreen extends Component {
           </div>
         </div>
       )
-    } else {
-      return (
-        <IdeasContainer loggedIn={this.props.loggedIn} />
-      )
-    }
+    
   }
 }
 

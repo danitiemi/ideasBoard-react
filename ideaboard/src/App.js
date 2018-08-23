@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 // import IdeasContainer from './components/IdeasContainer'
 import LoginScreen from './components/LoginScreen';
 import IdeasContainer from './components/IdeasContainer';
@@ -21,10 +21,7 @@ class App extends Component {
   
   render() {
     return (
-      // <div>
-      //   <NavBar />
-      // </div>
-
+      
       <div className="App">
         <header className="App-header">
           <h1><i className="fas fa-lightbulb"></i> My Brilliant Ideas</h1>
@@ -33,6 +30,7 @@ class App extends Component {
           <div className="container">
             <NavBar />
             {/* <Route exact path="/" render={() => <HomePage />} */}
+            <Route exact path="/user/ideas" render={ () => <Redirect to="/user/ideas" /> }/>
             <Route exact path="/ideas" component={IdeasContainer} />
             <Route exact path="/" component={LoginScreen} />
             {/* <Route path="/logout" component={LoginScreen} /> */}
