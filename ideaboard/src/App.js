@@ -5,6 +5,14 @@ import './styles/App.css';
 import LoginScreen from './components/LoginScreen';
 import IdeasContainer from './components/IdeasContainer';
 
+// AppPresenter({user })  {
+//   return (
+//     <div>
+//       {user ? <IdeasContainer /> : <LoginScreen /> }
+//     </div>
+//   )
+// }
+
 class App extends Component {
 
   constructor(props) {
@@ -25,7 +33,7 @@ class App extends Component {
         </header>
         
         <LoginScreen />
-       
+        {/* <AppPresenter {...this.state} /> */}
       </div>
     );
   }
