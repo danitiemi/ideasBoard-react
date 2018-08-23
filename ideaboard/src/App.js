@@ -7,14 +7,6 @@ import IdeasContainer from './components/IdeasContainer';
 import NavBar from './components/NavBar.js'
 import HomePage from './components/HomePage';
 
-// AppPresenter({user })  {
-//   return (
-//     <div>
-//       {user ? <IdeasContainer /> : <LoginScreen /> }
-//     </div>
-//   )
-// }
-
 class App extends Component {
 
   constructor(props) {

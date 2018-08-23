@@ -21,9 +21,12 @@ class IdeaForm extends Component {
           title: this.state.title,
           body: this.state.body
         }
-      
+        let config = { headers: {}}
+        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+
+        config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.put(
-          `http://localhost:3001/api/v1/ideas/${this.props.idea.id}`,
+          `http://localhost:3001/api/v1/ideas/${this.props.idea.id}`, config,
           {
             idea: idea
           })

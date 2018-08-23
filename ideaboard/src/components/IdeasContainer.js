@@ -20,14 +20,12 @@ class IdeasContainer extends Component {
 
     componentDidMount() {
         let config = { headers: {}}
-        let jwt = this.props.jwt
-        // let config = this.props.config
+        // let jwt = this.props.jwt
+        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
         console.log(jwt)
-        // console.log(config, "config")
+
         // AJAX call to the API and store the idea in the component state
-        config['headers']['Authorization'] = 'Bearer ' + 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDAwOTh9.GYz6DL6yLA0lB2Q8SBy5Vq37aXMURWtEXPVNFrpw4bY'
-        // return axios.get(`${apiBaseUrl}api/v1/ideas`, config)        
-        // config['headers']['Authorization'] = 'Bearer ' + jwt
+        config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.get('http://localhost:3001/api/v1/ideas', config)
             .then(response => {
                 console.log(response)
@@ -39,8 +37,12 @@ class IdeasContainer extends Component {
     // update() make a new copy of this.state.ideas 
     // $splice command insert the new idea in response.data, at the 0 index of this array.
     addNewIdea = () => {
+        let config = { headers: {}}
+        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+
+        config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.post(
-            'http://localhost:3001/api/v1/ideas',
+            'http://localhost:3001/api/v1/ideas', config,
             {
                 idea:
                 {
@@ -90,7 +92,11 @@ class IdeasContainer extends Component {
     }
 
     deleteIdea = (id) => {
-        axios.delete(`http://localhost:3001/api/v1/ideas/${id}`)
+        let config = { headers: {}}
+        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+
+        config['headers']['Authorization'] = 'Bearer ' + jwt
+        axios.delete(`http://localhost:3001/api/v1/ideas/${id}`, config)
             .then(response => {
                 const ideaIndex = this.state.ideas.findIndex(x => x.id === id)
                 const ideas = update(this.state.ideas, { $splice: [[ideaIndex, 1]] })
@@ -98,7 +104,6 @@ class IdeasContainer extends Component {
             })
             .catch(error => console.log(error))
     }
-
 
     render() {
         return (
@@ -112,6 +117,7 @@ class IdeasContainer extends Component {
                 <div className="ideas_container">
                     {this.state.ideas.map((idea) => {
                         if (this.state.editingIdeaId === idea.id) {
+                            console.log(this.state.ideas)
                             return (<IdeaForm idea={idea} key={idea.id}
                                 updateIdea={this.updateIdea}
                                 titleRef={input => this.title = input}
