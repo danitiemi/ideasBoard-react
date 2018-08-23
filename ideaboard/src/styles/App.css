@@ -32,6 +32,41 @@ h1 .fas:hover {
   font-size: 1.5em;
 }
 
+.main-nav {
+  width: 100%;
+  min-height: 50px;
+  padding: 20px;
+  /* position: fixed; */
+}
+
+.main-nav a {
+  font-size: .7em;
+  color: #222;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+  padding: 1em;
+  transition: .2s;
+  border-radius: 8px
+}
+.main-nav a:hover,
+.main-nav .active {
+  color: #fff;
+  background: #855cc4;
+}
+
+.navContainer {
+  height: 70px;
+  margin-bottom: 100px
+}
+
+ul {
+  display: inline-block;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
 .container {
   justify-content: center;
 }
