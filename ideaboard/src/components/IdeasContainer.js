@@ -21,8 +21,8 @@ class IdeasContainer extends Component {
     componentDidMount() {
         let config = { headers: {}}
         // let jwt = this.props.jwt
-        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
-        console.log(jwt)
+        // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUxMjA5NTZ9.9JKkD2F63f7x0bXl3ZG1W6y2aWRfWJdsOfx0FJg6w_o'
+        let jwt = localStorage.getItem('id_token')
 
         // AJAX call to the API and store the idea in the component state
         config['headers']['Authorization'] = 'Bearer ' + jwt
@@ -38,7 +38,8 @@ class IdeasContainer extends Component {
     // $splice command insert the new idea in response.data, at the 0 index of this array.
     addNewIdea = () => {
         let config = { headers: {}}
-        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+        let jwt = localStorage.getItem('id_token')
+        // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
 
         config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.post(
@@ -93,7 +94,9 @@ class IdeasContainer extends Component {
 
     deleteIdea = (id) => {
         let config = { headers: {}}
-        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+        let jwt = localStorage.getItem('id_token')
+        console.log(jwt, 'jwt')
+        // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
 
         config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.delete(`http://localhost:3001/api/v1/ideas/${id}`, config)

@@ -59,17 +59,11 @@ class LoginScreen extends Component {
           jwt: jwt
         })
         config['headers']['Authorization'] = 'Bearer ' + jwt
-        return axios.get(`${apiBaseUrl}api/v1/ideas`, config)          
-      })
-      // .then(response => { 
         
-      //   this.setState ({
-      //     loggedIn: true,
-      //     redirectToReferrer: true
-      //   })
-        // console.log(this.state.loggedIn)
-  
-      // })
+        localStorage.setItem('id_token', jwt) 
+        console.log(localStorage)
+        return axios.get(`${apiBaseUrl}api/v1/ideas`, config)         
+      })
       .catch(function (error) {
         return undefined
       })
@@ -78,9 +72,7 @@ class LoginScreen extends Component {
  
   render() {
     const props = this.props;
-    // const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
-  
   
     if (redirectToReferrer) {
       return <Redirect exact to="/ideas" onClick={this.handleClick} jwt={this.state.jwt}/>;
