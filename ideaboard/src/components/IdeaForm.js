@@ -22,14 +22,15 @@ class IdeaForm extends Component {
           body: this.state.body
         }
         let config = { headers: {}}
-        let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
+        let jwt = localStorage.getItem('id_token')
+        // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
 
         config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.put(
-          `http://localhost:3001/api/v1/ideas/${this.props.idea.id}`, config,
+          `http://localhost:3001/api/v1/ideas/${this.props.idea.id}`,
           {
             idea: idea
-          })
+          }, config)
         .then(response => {
           console.log(response)
           this.props.updateIdea(response.data)

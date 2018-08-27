@@ -19,16 +19,16 @@ class IdeasContainer extends Component {
     }
 
     componentDidMount() {
-        let config = { headers: {}}
-        // let jwt = this.props.jwt
+        
         // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUxMjA5NTZ9.9JKkD2F63f7x0bXl3ZG1W6y2aWRfWJdsOfx0FJg6w_o'
         let jwt = localStorage.getItem('id_token')
+        let config = { headers: {}}
 
         // AJAX call to the API and store the idea in the component state
         config['headers']['Authorization'] = 'Bearer ' + jwt
         axios.get('http://localhost:3001/api/v1/ideas', config)
             .then(response => {
-                console.log(response)
+                console.log(response, "componentDidMount")
                 this.setState({ ideas: response.data })
             })
             .catch(error => console.log(error))
@@ -39,21 +39,17 @@ class IdeasContainer extends Component {
     addNewIdea = () => {
         let config = { headers: {}}
         let jwt = localStorage.getItem('id_token')
+        let newIdea = {
+            idea:{
+                title: '',
+                body: ''
+            }}
         // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
 
         config['headers']['Authorization'] = 'Bearer ' + jwt
-        axios.post(
-            'http://localhost:3001/api/v1/ideas', config,
-            {
-                idea:
-                {
-                    title: '',
-                    body: ''
-                }
-            }
-        )
+        axios.post('http://localhost:3001/api/v1/ideas',  newIdea, config)
             .then(response => {
-                console.log(response)
+                console.log(response, "addNewIdea")
                 const ideas = update(this.state.ideas, {
                     $splice: [[0, 0, response.data]]
                 })
@@ -77,6 +73,7 @@ class IdeasContainer extends Component {
             notification: 'All changes saved !',
             transitionIn: true
         })
+        console.log("updateIdea")
     }
 
     resetNotification = () => {
@@ -95,7 +92,7 @@ class IdeasContainer extends Component {
     deleteIdea = (id) => {
         let config = { headers: {}}
         let jwt = localStorage.getItem('id_token')
-        console.log(jwt, 'jwt')
+        console.log('delete')
         // let jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1MzUwNDgwMTF9.Rkg1ImiIER-QO5p4-jD6bv6X1tYbidfiOo-ki5OeJmw'
 
         config['headers']['Authorization'] = 'Bearer ' + jwt
@@ -119,6 +116,7 @@ class IdeasContainer extends Component {
                 </div>
                 <div className="ideas_container">
                     {this.state.ideas.map((idea) => {
+                        console.log("map ideas", this.state.ideas)
                         if (this.state.editingIdeaId === idea.id) {
                             console.log(this.state.ideas)
                             return (<IdeaForm idea={idea} key={idea.id}
