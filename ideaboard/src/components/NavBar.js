@@ -13,10 +13,11 @@ class NavBar extends Component {
     return (
       <div className="navContainer">
         <ul className='main-nav'>
-          <li><NavLink exact to="#">About</NavLink></li>
+          <li><NavLink exact to="/">About</NavLink></li>
           <li><NavLink exact to="/ideas">Ideas</NavLink></li>
           <li><NavLink exact to="/">Login</NavLink></li>
-          <li><NavLink exact to="#" onClick={this.logoutUser} loggedIn={this.props.loggedIn}>Logout</NavLink></li>
+          <li><NavLink exact to="/logout" onClick={this.logoutUser} >Logout</NavLink></li>
+          {/* loggedIn={this.props.loggedIn}>Logout</NavLink></li> */}
         </ul>
       </div>
     )
@@ -24,3 +25,5 @@ class NavBar extends Component {
 }
 
 export default NavBar;
+
+
